@@ -5,6 +5,44 @@ import { getRegion } from "./regions"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import { sortProducts } from "@lib/util/sort-products"
 
+export const listProducts = cache(async function ({
+  regionId,
+  queryParams,
+  countryCode,
+}: {
+  regionId?: string
+  queryParams?: HttpTypes.FindParams & HttpTypes.StoreProductParams
+  countryCode?: string
+}) {
+  const region = regionId ? { id: regionId } : await getRegion(countryCode || "us")
+
+  if (!region) {
+    return {
+      response: { products: [], count: 0 },
+      nextPage: null,
+    }
+  }
+
+  return sdk.store.product
+    .list(
+      {
+        region_id: region.id,
+        fields: "*variants.calculated_price",
+        ...queryParams,
+      },
+      { next: { tags: ["products"] } }
+    )
+    .then(({ products, count }) => {
+      return {
+        response: {
+          products,
+          count,
+        },
+        nextPage: null,
+      }
+    })
+})
+
 export const getProductsById = cache(async function ({
   ids,
   regionId,

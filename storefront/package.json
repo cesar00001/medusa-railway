@@ -22,11 +22,12 @@
     "webpack": "^5"
   },
   "dependencies": {
-    "@headlessui/react": "^1.6.1",
+    "@headlessui/react": "^1.7.19",
     "@hookform/error-message": "^2.0.0",
+    "@medusajs/icons": "2.11.4-preview-20251127060138",
     "@medusajs/js-sdk": "preview",
     "@medusajs/types": "preview",
-    "@medusajs/ui": "preview",
+    "@medusajs/ui": "4.0.28-preview-20251127060138",
     "@meilisearch/instant-meilisearch": "^0.7.1",
     "@paypal/paypal-js": "^5.0.6",
     "@paypal/react-paypal-js": "^7.8.1",

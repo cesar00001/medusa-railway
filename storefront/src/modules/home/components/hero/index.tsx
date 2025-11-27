@@ -71,7 +71,7 @@ const Hero = () => {
               Rare food. Real People.
             </Heading>
             <p className="text-base small:text-lg text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
-              We're putting power back in the hands of independent food
+              We&apos;re putting power back in the hands of independent food
               producers - and changing the food system for the better.
             </p>
           </div>

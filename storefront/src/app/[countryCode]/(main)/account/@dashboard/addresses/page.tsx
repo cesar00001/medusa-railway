@@ -5,7 +5,7 @@ import AddressBook from "@modules/account/components/address-book"
 
 import { headers } from "next/headers"
 import { getRegion } from "@lib/data/regions"
-import { getCustomer } from "@lib/data/customer"
+import { retrieveCustomer } from "@lib/data/customer"
 
 export const metadata: Metadata = {
   title: "Addresses",
@@ -18,7 +18,7 @@ export default async function Addresses({
   params: { countryCode: string }
 }) {
   const { countryCode } = params
-  const customer = await getCustomer()
+  const customer = await retrieveCustomer()
   const region = await getRegion(countryCode)
 
   if (!customer || !region) {

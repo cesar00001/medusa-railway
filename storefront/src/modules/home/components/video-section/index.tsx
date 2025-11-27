@@ -1,11 +1,9 @@
 "use client"
 
-import { useParams } from "next/navigation"
 import { useState } from "react"
 
 const VideoSection = () => {
   const [isPlaying, setIsPlaying] = useState(false)
-  const { countryCode } = useParams()
 
   return (
     <div className="content-container py-12">
@@ -55,15 +53,15 @@ const VideoSection = () => {
               </div>
             ) : (
               <div className="relative w-full h-full">
-                <video
-                  src={`/${countryCode}/instagram/video2.mp4`}
-                  className="w-full h-full object-cover"
-                  controls
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                />
+                 <video
+                   src="/instagram/video2.mp4"
+                   className="w-full h-full object-cover"
+                   controls
+                   autoPlay
+                   muted
+                   loop
+                   playsInline
+                 />
                 <button
                   onClick={() => setIsPlaying(false)}
                   className="absolute top-4 right-4 px-3 py-1 bg-black/50 text-white rounded-lg hover:bg-black/70 transition-colors text-sm"

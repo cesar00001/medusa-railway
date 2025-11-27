@@ -1,12 +1,9 @@
 "use client"
 
 import { Button } from "@medusajs/ui"
-import { useParams } from "next/navigation"
-import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 const CommunitySection = () => {
-  const { countryCode } = useParams()
   return (
     <div className="content-container py-16 bg-white">
       <div className="grid grid-cols-1 medium:grid-cols-2 gap-12 items-center">
@@ -57,42 +54,38 @@ const CommunitySection = () => {
             </h3>
             <div className="grid grid-cols-2 small:grid-cols-4 gap-4">
                <div className="aspect-square bg-ui-bg-subtle rounded-lg overflow-hidden">
-                  <Image
-                    width={"100"}
-                    height={"100"}
-                    src={`/${countryCode}/instagram/ig1.jpg`}
+                  <img
+                    src="/instagram/ig1.jpg"
                     alt="Community post 1"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                </div>
                <div className="aspect-square bg-ui-bg-subtle rounded-lg overflow-hidden">
-                 <video
-                   src={`/${countryCode}/instagram/video1.mp4`}
-                   className="w-full h-full object-cover"
-                   muted
-                   loop
-                   playsInline
-                   autoPlay
-                 />
+                  <video
+                    src="/instagram/video1.mp4"
+                    className="w-full h-full object-cover"
+                    muted
+                    loop
+                    playsInline
+                    autoPlay
+                  />
                </div>
                <div className="aspect-square bg-ui-bg-subtle rounded-lg overflow-hidden">
-                  <Image
-                    width={"100"}
-                    height={"100"}
-                    src={`/${countryCode}/instagram/ig2.jpg`}
+                  <img
+                    src="/instagram/ig2.jpg"
                     alt="Community post 2"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                </div>
                <div className="aspect-square bg-ui-bg-subtle rounded-lg overflow-hidden">
-                 <video
-                   src={`/${countryCode}/instagram/video2.mp4`}
-                   className="w-full h-full object-cover"
-                   muted
-                   loop
-                   playsInline
-                   autoPlay
-                 />
+                  <video
+                    src="/instagram/video2.mp4"
+                    className="w-full h-full object-cover"
+                    muted
+                    loop
+                    playsInline
+                    autoPlay
+                  />
                </div>
             </div>
           </div>

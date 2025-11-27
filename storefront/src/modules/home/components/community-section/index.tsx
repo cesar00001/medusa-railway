@@ -55,14 +55,14 @@ const CommunitySection = () => {
             <div className="grid grid-cols-2 small:grid-cols-4 gap-4">
                <div className="aspect-square bg-ui-bg-subtle rounded-lg overflow-hidden">
                   <img
-                    src="/instagram/ig1.jpg"
+                    src="/static/instagram/ig1.jpg"
                     alt="Community post 1"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                </div>
                <div className="aspect-square bg-ui-bg-subtle rounded-lg overflow-hidden">
                   <video
-                    src="/instagram/video1.mp4"
+                    src="/static/instagram/video1.mp4"
                     className="w-full h-full object-cover"
                     muted
                     loop
@@ -72,14 +72,14 @@ const CommunitySection = () => {
                </div>
                <div className="aspect-square bg-ui-bg-subtle rounded-lg overflow-hidden">
                   <img
-                    src="/instagram/ig2.jpg"
+                    src="/static/instagram/ig2.jpg"
                     alt="Community post 2"
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                   />
                </div>
                <div className="aspect-square bg-ui-bg-subtle rounded-lg overflow-hidden">
                   <video
-                    src="/instagram/video2.mp4"
+                    src="/static/instagram/video2.mp4"
                     className="w-full h-full object-cover"
                     muted
                     loop

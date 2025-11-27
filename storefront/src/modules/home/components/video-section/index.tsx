@@ -54,7 +54,7 @@ const VideoSection = () => {
             ) : (
               <div className="relative w-full h-full">
                  <video
-                   src="/instagram/video2.mp4"
+                   src="/static/instagram/video2.mp4"
                    className="w-full h-full object-cover"
                    controls
                    autoPlay

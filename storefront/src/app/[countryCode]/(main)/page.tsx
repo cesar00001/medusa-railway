@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/image.jpg",
+        url: "/opengraph-image.jpg",
         width: 1200,
         height: 630,
         alt: "Chiltepin - Wild & Specialty Foods",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Chiltepin - Wild & Specialty Foods",
     description: "Discover rare ingredients from foragers, farmers, and artisan producers. A community marketplace for wild and specialty foods.",
-    images: ["/image.jpg"],
+    images: ["/twitter-image.jpg"],
   },
 }
 

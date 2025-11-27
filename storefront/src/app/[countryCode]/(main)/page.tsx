@@ -13,25 +13,6 @@ export const metadata: Metadata = {
   title: "Chiltepin - Wild & Specialty Foods",
   description:
     "Discover rare ingredients from foragers, farmers, and artisan producers. A community marketplace for wild and specialty foods.",
-  openGraph: {
-    title: "Chiltepin - Wild & Specialty Foods",
-    description: "Discover rare ingredients from foragers, farmers, and artisan producers. A community marketplace for wild and specialty foods.",
-    type: "website",
-    images: [
-      {
-        url: "/opengraph-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Chiltepin - Wild & Specialty Foods",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Chiltepin - Wild & Specialty Foods",
-    description: "Discover rare ingredients from foragers, farmers, and artisan producers. A community marketplace for wild and specialty foods.",
-    images: ["/twitter-image.jpg"],
-  }
 }
 
 export default async function Home({

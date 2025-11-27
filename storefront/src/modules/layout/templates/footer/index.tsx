@@ -200,7 +200,7 @@ export default async function Footer() {
         </div>
         <div className="flex flex-col md:flex-row w-full mb-8 justify-center md:justify-between items-center text-ui-fg-muted border-t border-gray-200 pt-8 gap-4 md:gap-0">
           <Text className="txt-compact-small text-center md:text-left">
-            © {new Date().getFullYear()} Medusa. All rights reserved.
+            © {new Date().getFullYear()} Chiltepin Sauzal. All rights reserved.
           </Text>
           <div className="flex items-center gap-4 md:gap-6">
             <MedusaCTA style={{}} />

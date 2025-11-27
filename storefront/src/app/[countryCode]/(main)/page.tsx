@@ -1,7 +1,11 @@
 import { Metadata } from "next"
 
+import Categories from "@modules/home/components/categories"
+import CommunitySection from "@modules/home/components/community-section"
 import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
+import ParallaxSection from "@modules/home/components/parallax-section"
+import VideoSection from "@modules/home/components/video-section"
 import { getCollectionsWithProducts } from "@lib/data/collections"
 import { getRegion } from "@lib/data/regions"
 
@@ -41,6 +45,9 @@ export default async function Home({
   return (
     <>
       <Hero />
+      <Categories />
+      <VideoSection />
+      <ParallaxSection />
       {collections && region && (
         <div className="py-12">
           <ul className="flex flex-col gap-x-6">
@@ -48,6 +55,7 @@ export default async function Home({
           </ul>
         </div>
       )}
+      <CommunitySection />
     </>
   )
 }

@@ -19,7 +19,7 @@ const Hero = () => {
       </div>
 
       {/* Floating Images - positioned between banner and hero */}
-      <div className="absolute top-[15px] right-2 md:right-[60px] lg:right-[60px] z-30 flex items-center">
+      <div className="absolute top-[0px] right-2 md:right-[60px] lg:right-[60px] z-30 flex items-center">
         <img
           alt="explore new pathways!"
           loading="lazy"

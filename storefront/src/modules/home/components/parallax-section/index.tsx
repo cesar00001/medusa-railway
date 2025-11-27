@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef } from "react"
+import Image from "next/image"
 
 const ParallaxSection = () => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -66,7 +67,7 @@ const ParallaxSection = () => {
   return (
     <div
       ref={containerRef}
-      className="relative h-[90vh] overflow-hidden bg-gradient-to-b from-earth-50 via-earth-100 to-forest-50 -mx-4 md:-mx-8"
+      className="relative h-[90vh] overflow-hidden bg-gradient-to-b from-earth-50 via-earth-100 to-forest-50"
     >
       {/* Background layer - bottle (slowest movement) */}
       <div
@@ -74,10 +75,12 @@ const ParallaxSection = () => {
         className="absolute inset-0 flex items-center justify-center will-change-transform"
         style={{ transform: "translateZ(0)" }}
       >
-        <img
+        <Image
           src="/bottle.png"
           alt="Bottle"
-          className="size-dvh h-auto opacity-25 drop-shadow-lg"
+          width={500}
+          height={500}
+          className="max-w-full max-h-full h-auto opacity-25 drop-shadow-lg"
         />
       </div>
 
@@ -87,10 +90,12 @@ const ParallaxSection = () => {
         className="absolute inset-0 flex items-center justify-center will-change-transform"
         style={{ transform: "translateZ(0)" }}
       >
-        <img
+        <Image
+          width={700}
+          height={100}
           src="/midpepper.png"
           alt="Mid Pepper"
-          className="w-[900px] h-auto opacity-35 drop-shadow-lg"
+          className="max-w-full max-h-full h-auto opacity-35 drop-shadow-lg"
         />
       </div>
 
@@ -100,10 +105,12 @@ const ParallaxSection = () => {
         className="absolute inset-0 flex items-center justify-center will-change-transform"
         style={{ transform: "translateZ(0)" }}
       >
-        <img
+        <Image
+          width={1000}
+          height={100}
           src="/pepper.png"
           alt="Pepper"
-          className="size h-auto opacity-45 drop-shadow-xl"
+          className="max-w-full max-h-full h-auto opacity-45 drop-shadow-xl"
         />
       </div>
 
@@ -111,7 +118,7 @@ const ParallaxSection = () => {
       <div className="absolute inset-0 flex items-center justify-center z-10">
         <div className="text-center max-w-3xl px-6 py-12 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 shadow-2xl">
           <h2 className="text-4xl small:text-5xl medium:text-6xl font-light text-earth-800 mb-6 drop-shadow-sm">
-            Nature's Finest
+            Nature&apos;s Finest
           </h2>
           <p className="text-lg small:text-xl text-earth-700 leading-relaxed drop-shadow-sm max-w-2xl mx-auto">
             Discover the perfect harmony of flavors from our carefully curated

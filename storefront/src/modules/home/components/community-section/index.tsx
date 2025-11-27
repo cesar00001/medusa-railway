@@ -2,6 +2,7 @@
 
 import { Button } from "@medusajs/ui"
 import { useParams } from "next/navigation"
+import Image from "next/image"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 const CommunitySection = () => {
@@ -17,7 +18,7 @@ const CommunitySection = () => {
             Rewild Your Spices
           </h2>
           <p className="text-lg text-ui-fg-subtle mb-6 leading-relaxed">
-            Rare food. Real people. We're putting power back in the hands of
+            Rare food. Real people. We&apos;re putting power back in the hands of
             independent food producers and changing the food system for the
             better.
           </p>
@@ -56,11 +57,13 @@ const CommunitySection = () => {
             </h3>
             <div className="grid grid-cols-2 small:grid-cols-4 gap-4">
                <div className="aspect-square bg-ui-bg-subtle rounded-lg overflow-hidden">
-                 <img
-                   src={`/${countryCode}/instagram/ig1.jpg`}
-                   alt="Community post 1"
-                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                 />
+                  <Image
+                    width={"100"}
+                    height={"100"}
+                    src={`/${countryCode}/instagram/ig1.jpg`}
+                    alt="Community post 1"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
                </div>
                <div className="aspect-square bg-ui-bg-subtle rounded-lg overflow-hidden">
                  <video
@@ -73,11 +76,13 @@ const CommunitySection = () => {
                  />
                </div>
                <div className="aspect-square bg-ui-bg-subtle rounded-lg overflow-hidden">
-                 <img
-                   src={`/${countryCode}/instagram/ig2.jpg`}
-                   alt="Community post 2"
-                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                 />
+                  <Image
+                    width={"100"}
+                    height={"100"}
+                    src={`/${countryCode}/instagram/ig2.jpg`}
+                    alt="Community post 2"
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  />
                </div>
                <div className="aspect-square bg-ui-bg-subtle rounded-lg overflow-hidden">
                  <video

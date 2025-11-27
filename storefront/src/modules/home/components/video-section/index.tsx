@@ -31,7 +31,7 @@ const VideoSection = () => {
                         />
                       </svg>
                     </div>
-                    <p className="text-sm opacity-80">Watch our story</p>
+                    <p className="text-sm opacity-80">Chiltepin Sauzal</p>
                   </div>
                 </div>
                 <button

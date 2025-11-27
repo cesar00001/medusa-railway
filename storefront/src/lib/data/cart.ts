@@ -6,19 +6,21 @@ import { HttpTypes } from "@medusajs/types"
 import { omit } from "lodash"
 import { revalidateTag } from "next/cache"
 import { redirect } from "next/navigation"
-import { getAuthHeaders, getCartId, removeCartId, setCartId } from "./cookies"
+import { getAuthHeaders, getCacheOptions, getCartId, removeCartId, setCartId } from "./cookies"
 import { getProductsById } from "./products"
 import { getRegion } from "./regions"
 
 export async function retrieveCart() {
-  const cartId = getCartId()
+  const cartId = await getCartId()
 
   if (!cartId) {
     return null
   }
 
+  const headers = await getAuthHeaders()
+
   return await sdk.store.cart
-    .retrieve(cartId, {}, { next: { tags: ["cart"] }, ...getAuthHeaders() })
+    .retrieve(cartId, {}, { next: { tags: ["cart"] }, ...headers })
     .then(({ cart }) => cart)
     .catch(() => {
       return null
@@ -33,10 +35,12 @@ export async function getOrSetCart(countryCode: string) {
     throw new Error(`Region not found for country code: ${countryCode}`)
   }
 
+  const headers = await getAuthHeaders()
+
   if (!cart) {
-    const cartResp = await sdk.store.cart.create({ region_id: region.id })
+    const cartResp = await sdk.store.cart.create({ region_id: region.id }, {}, headers)
     cart = cartResp.cart
-    setCartId(cart.id)
+    await setCartId(cart.id)
     revalidateTag("cart")
   }
 
@@ -45,7 +49,7 @@ export async function getOrSetCart(countryCode: string) {
       cart.id,
       { region_id: region.id },
       {},
-      getAuthHeaders()
+      headers
     )
     revalidateTag("cart")
   }
@@ -54,13 +58,15 @@ export async function getOrSetCart(countryCode: string) {
 }
 
 export async function updateCart(data: HttpTypes.StoreUpdateCart) {
-  const cartId = getCartId()
+  const cartId = await getCartId()
   if (!cartId) {
     throw new Error("No existing cart found, please create one before updating")
   }
 
+  const headers = await getAuthHeaders()
+
   return sdk.store.cart
-    .update(cartId, data, {}, getAuthHeaders())
+    .update(cartId, data, {}, headers)
     .then(({ cart }) => {
       revalidateTag("cart")
       return cart
@@ -86,6 +92,8 @@ export async function addToCart({
     throw new Error("Error retrieving or creating cart")
   }
 
+  const headers = await getAuthHeaders()
+
   await sdk.store.cart
     .createLineItem(
       cart.id,
@@ -94,7 +102,7 @@ export async function addToCart({
         quantity,
       },
       {},
-      getAuthHeaders()
+      headers
     )
     .then(() => {
       revalidateTag("cart")
@@ -113,13 +121,15 @@ export async function updateLineItem({
     throw new Error("Missing lineItem ID when updating line item")
   }
 
-  const cartId = getCartId()
+  const cartId = await getCartId()
   if (!cartId) {
     throw new Error("Missing cart ID when updating line item")
   }
 
+  const headers = await getAuthHeaders()
+
   await sdk.store.cart
-    .updateLineItem(cartId, lineId, { quantity }, {}, getAuthHeaders())
+    .updateLineItem(cartId, lineId, { quantity }, {}, headers)
     .then(() => {
       revalidateTag("cart")
     })
@@ -131,13 +141,15 @@ export async function deleteLineItem(lineId: string) {
     throw new Error("Missing lineItem ID when deleting line item")
   }
 
-  const cartId = getCartId()
+  const cartId = await getCartId()
   if (!cartId) {
     throw new Error("Missing cart ID when deleting line item")
   }
 
+  const headers = await getAuthHeaders()
+
   await sdk.store.cart
-    .deleteLineItem(cartId, lineId, getAuthHeaders())
+    .deleteLineItem(cartId, lineId, headers)
     .then(() => {
       revalidateTag("cart")
     })
@@ -199,12 +211,14 @@ export async function setShippingMethod({
   cartId: string
   shippingMethodId: string
 }) {
+  const headers = await getAuthHeaders()
+
   return sdk.store.cart
     .addShippingMethod(
       cartId,
       { option_id: shippingMethodId },
       {},
-      getAuthHeaders()
+      headers
     )
     .then(() => {
       revalidateTag("cart")
@@ -219,8 +233,10 @@ export async function initiatePaymentSession(
     context?: Record<string, unknown>
   }
 ) {
+  const headers = await getAuthHeaders()
+
   return sdk.store.payment
-    .initiatePaymentSession(cart, data, {}, getAuthHeaders())
+    .initiatePaymentSession(cart, data, {}, headers)
     .then((resp) => {
       revalidateTag("cart")
       return resp
@@ -229,7 +245,7 @@ export async function initiatePaymentSession(
 }
 
 export async function applyPromotions(codes: string[]) {
-  const cartId = getCartId()
+  const cartId = await getCartId()
   if (!cartId) {
     throw new Error("No existing cart found")
   }
@@ -302,7 +318,7 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
     if (!formData) {
       throw new Error("No form data found when setting addresses")
     }
-    const cartId = getCartId()
+    const cartId = await getCartId()
     if (!cartId) {
       throw new Error("No existing cart found when setting addresses")
     }
@@ -350,13 +366,15 @@ export async function setAddresses(currentState: unknown, formData: FormData) {
 }
 
 export async function placeOrder() {
-  const cartId = getCartId()
+  const cartId = await getCartId()
   if (!cartId) {
     throw new Error("No existing cart found when placing an order")
   }
 
+  const headers = await getAuthHeaders()
+
   const cartRes = await sdk.store.cart
-    .complete(cartId, {}, getAuthHeaders())
+    .complete(cartId, {}, headers)
     .then((cartRes) => {
       revalidateTag("cart")
       return cartRes
@@ -379,7 +397,7 @@ export async function placeOrder() {
  * @param countryCode
  */
 export async function updateRegion(countryCode: string, currentPath: string) {
-  const cartId = getCartId()
+  const cartId = await getCartId()
   const region = await getRegion(countryCode)
 
   if (!region) {
@@ -395,4 +413,26 @@ export async function updateRegion(countryCode: string, currentPath: string) {
   revalidateTag("products")
 
   redirect(`/${countryCode}${currentPath}`)
+}
+
+export async function listCartOptions() {
+  const cartId = await getCartId()
+
+  if (!cartId) {
+    return { shipping_options: [] }
+  }
+
+  const headers = await getAuthHeaders()
+  const next = {
+    ...(await getCacheOptions("shippingOptions")),
+  }
+
+  return await sdk.client.fetch<{
+    shipping_options: HttpTypes.StoreCartShippingOption[]
+  }>("/store/shipping-options", {
+    query: { cart_id: cartId },
+    next,
+    headers,
+    cache: "force-cache",
+  })
 }

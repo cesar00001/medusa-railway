@@ -51,62 +51,87 @@
 
 @layer components {
   .content-container {
-    @apply max-w-[1440px] w-full mx-auto px-6;
+    @apply max-w-[1440px] w-full mx-auto px-[45px];
   }
 
   .contrast-btn {
     @apply px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition-colors duration-200 ease-in;
   }
 
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+
+  .glass-dark {
+    @apply bg-black/10 backdrop-blur-md border border-black/20;
+  }
+
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 rounded-lg shadow-lg;
+  }
+
   .text-xsmall-regular {
     @apply text-[10px] leading-4 font-normal;
+    font-family: var(--font-caslon-ionic), "Crimson Text", serif;
   }
 
   .text-small-regular {
     @apply text-xs leading-5 font-normal;
+    font-family: var(--font-caslon-ionic), "Crimson Text", serif;
   }
 
   .text-small-semi {
     @apply text-xs leading-5 font-semibold;
+    font-family: var(--font-caslon-ionic), "Crimson Text", serif;
   }
 
   .text-base-regular {
     @apply text-sm leading-6 font-normal;
+    font-family: var(--font-caslon-ionic), "Crimson Text", serif;
   }
 
   .text-base-semi {
     @apply text-sm leading-6 font-semibold;
+    font-family: var(--font-caslon-ionic), "Crimson Text", serif;
   }
 
   .text-large-regular {
     @apply text-base leading-6 font-normal;
+    font-family: var(--font-caslon-ionic), "Crimson Text", serif;
   }
 
   .text-large-semi {
     @apply text-base leading-6 font-semibold;
+    font-family: var(--font-caslon-ionic), "Crimson Text", serif;
   }
 
   .text-xl-regular {
     @apply text-2xl leading-[36px] font-normal;
+    font-family: var(--font-champion), "Playfair Display", serif;
   }
 
   .text-xl-semi {
     @apply text-2xl leading-[36px] font-semibold;
+    font-family: var(--font-champion), "Playfair Display", serif;
   }
 
   .text-2xl-regular {
     @apply text-[30px] leading-[48px] font-normal;
+    font-family: var(--font-champion), "Playfair Display", serif;
   }
 
   .text-2xl-semi {
     @apply text-[30px] leading-[48px] font-semibold;
+    font-family: var(--font-champion), "Playfair Display", serif;
   }
 
   .text-3xl-regular {
     @apply text-[32px] leading-[44px] font-normal;
+    font-family: var(--font-champion), "Playfair Display", serif;
   }
 
   .text-3xl-semi {
     @apply text-[32px] leading-[44px] font-semibold;
+    font-family: var(--font-champion), "Playfair Display", serif;
   }
 }

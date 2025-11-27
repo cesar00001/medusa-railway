@@ -21,6 +21,68 @@ module.exports = {
         padding: "padding-top padding-right padding-bottom padding-left",
       },
       colors: {
+        // color palette
+        primary: {
+          50: "#f4f1ef", // warm cream (secondary)
+          100: "#ede8dc",
+          200: "#ddd1b8",
+          300: "#c8b08d",
+          400: "#a8906b",
+          500: "#8c7550",
+          600: "#705c3f",
+          700: "#5a4a34",
+          800: "#2d3a2a", // deep forest green (primary)
+          900: "#1d1e1c", // charcoal (text)
+        },
+        accent: {
+          50: "#feffe8", // off-white
+          100: "#f4f1ef", // warm cream
+          200: "#e5dacf", // cream
+          300: "#d7d8ce", // light gray
+          400: "#cfcb99", // pale yellow
+          500: "#b6c800", // bright green/yellow (accent)
+          600: "#6e9b04", // lime green
+          700: "#efb525", // golden yellow
+          800: "#f3ad00", // amber
+          900: "#c28614", // gold
+        },
+        sage: {
+          50: "#f0f9f4",
+          100: "#e0d4c7", // warm beige
+          200: "#a3af9b", // sage green
+          300: "#7f8774", // moss green
+          400: "#637c3f", // grass green
+          500: "#5b6a64", // muted green
+          600: "#545f41", // olive green
+          700: "#477459", // forest green
+          800: "#2d9d5c",
+          900: "#1d673c",
+        },
+        warm: {
+          50: "#fefefe",
+          100: "#f4a5a6", // soft pink
+          200: "#e0d4c7", // warm beige
+          300: "#d4b6a2", // taupe
+          400: "#b4d3da", // light blue
+          500: "#a3af9b", // sage green
+          600: "#8b694e", // brown
+          700: "#837364", // taupe
+          800: "#789ba5", // slate blue
+          900: "#4f5565", // charcoal gray
+        },
+        vibrant: {
+          50: "#fefefe",
+          100: "#fb3700", // orange
+          200: "#f60", // orange
+          300: "#efb525", // golden yellow
+          400: "#c28614", // gold
+          500: "#b6c800", // bright green
+          600: "#62aedf", // blue
+          700: "#502b45", // burgundy
+          800: "#8d0025", // maroon
+          900: "#02302f", // dark teal
+        },
+        // Legacy colors for compatibility
         grey: {
           0: "#FFFFFF",
           5: "#F9FAFB",
@@ -34,12 +96,37 @@ module.exports = {
           80: "#1F2937",
           90: "#111827",
         },
+        earth: {
+          50: "#f7f5f0",
+          100: "#ede8dc",
+          200: "#ddd1b8",
+          300: "#c8b08d",
+          400: "#a8906b",
+          500: "#8c7550",
+          600: "#705c3f",
+          700: "#5a4a34",
+          800: "#483c2c",
+          900: "#3d3326",
+        },
+        forest: {
+          50: "#f0f9f4",
+          100: "#dcf2e4",
+          200: "#bae6c9",
+          300: "#87d4a2",
+          400: "#4eba78",
+          500: "#2d9d5c",
+          600: "#228048",
+          700: "#1d673c",
+          800: "#185332",
+          900: "#15442b",
+        },
       },
       borderRadius: {
         none: "0px",
         soft: "2px",
         base: "4px",
         rounded: "8px",
+        "rounded-lg": "10px",
         large: "16px",
         circle: "9999px",
       },
@@ -68,6 +155,18 @@ module.exports = {
           "Helvetica Neue",
           "Ubuntu",
           "sans-serif",
+        ],
+        serif: [
+          "var(--font-caslon-ionic)",
+          "Crimson Text",
+          "Times New Roman",
+          "serif",
+        ],
+        display: [
+          "var(--font-champion)",
+          "Playfair Display",
+          "Times New Roman",
+          "serif",
         ],
       },
       keyframes: {

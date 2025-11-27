@@ -2,6 +2,7 @@ import { sdk } from "@lib/config"
 import { cache } from "react"
 import { getProductsList } from "./products"
 import { HttpTypes } from "@medusajs/types"
+import { getCacheOptions } from "./cookies"
 
 export const retrieveCollection = cache(async function (id: string) {
   return sdk.store.collection
@@ -60,3 +61,49 @@ export const getCollectionsWithProducts = cache(
     return collections as unknown as HttpTypes.StoreCollection[]
   }
 )
+
+export const listCollections = async (
+  queryParams: Record<string, string> = {}
+): Promise<{ collections: HttpTypes.StoreCollection[]; count: number }> => {
+  const next = {
+    ...(await getCacheOptions("collections")),
+  }
+
+  queryParams.limit = queryParams.limit || "100"
+  queryParams.offset = queryParams.offset || "0"
+
+  return sdk.client
+    .fetch<{ collections: HttpTypes.StoreCollection[]; count: number }>(
+      "/store/collections",
+      {
+        query: queryParams,
+        next,
+        cache: "force-cache",
+      }
+    )
+    .then(({ collections }) => ({ collections, count: collections.length }))
+}
+
+export const listCategories = async (query?: Record<string, any>) => {
+  const next = {
+    ...(await getCacheOptions("categories")),
+  }
+
+  const limit = query?.limit || 100
+
+  return sdk.client
+    .fetch<{ product_categories: HttpTypes.StoreProductCategory[] }>(
+      "/store/product-categories",
+      {
+        query: {
+          fields:
+            "*category_children, *products, *parent_category, *parent_category.parent_category",
+          limit,
+          ...query,
+        },
+        next,
+        cache: "force-cache",
+      }
+    )
+    .then(({ product_categories }) => product_categories)
+}
